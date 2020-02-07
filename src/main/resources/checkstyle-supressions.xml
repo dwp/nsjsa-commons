@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE suppressions PUBLIC "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+        "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+<suppressions>
+    <!-- Reason: most entities will have getters setters and constructors which hide fields -->
+    <suppress checks="HiddenField" files="[\\/]dwp.jsa[\\/].*\.java$"/>
+    <suppress checks="ParameterNumber" files="Claimant.java"/>
+    <suppress checks="ParameterNumber" files="ClaimForms.java"/>
+    <suppress checks="ParameterNumber" files="Evidence.java"/>
+    <suppress checks="ParameterNumber" files="SummaryService.java"/>
+    <suppress checks="ParameterNumber" files="CurrentWork.java"/>
+    <suppress checks="ParameterNumber" files="PreviousWork.java"/>
+    <suppress checks="ParameterNumber" files="Circumstances.java"/>
+    <suppress checks="ParameterNumber" files="Evidence.java"/>
+    <suppress checks="ParameterNumber" files="ClaimStatistics.java"/>
+</suppressions>
