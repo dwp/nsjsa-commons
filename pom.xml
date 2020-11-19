@@ -28,7 +28,7 @@
         <io.jsonwebtoken.jjwt.version>0.10.5</io.jsonwebtoken.jjwt.version>
         <com.google.code.findbugs.version>3.0.1</com.google.code.findbugs.version>
         <hibernate-types.version>2.9.0</hibernate-types.version>
-        <hibernate-core.version>5.2.17.Final</hibernate-core.version>
+        <hibernate-core.version>5.4.24.Final</hibernate-core.version>
         <jacoco.version>0.8.2</jacoco.version>
         <jackson-version>2.10.2</jackson-version>
         <sonar.coverage.exclusions>uk/gov/dwp/jsa/security/JWTFilter.java</sonar.coverage.exclusions>
