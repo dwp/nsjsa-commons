@@ -45,6 +45,10 @@ public class Circumstances {
 
     private String serviceVersion;
 
+    private BackDating backDating;
+
+    private Boolean encrypted;
+
     public Circumstances() {
     }
 
@@ -63,7 +67,9 @@ public class Circumstances {
             final Pensions pensions,
             final Boolean hasExtraCurrentWork,
             final Boolean hasExtraPreviousWork,
-            final String locale) {
+            final String locale,
+            final BackDating backDating,
+            final Boolean encrypted) {
         this.id = id;
         this.claimantId = claimantId;
         this.claimStartDate = claimStartDate;
@@ -80,6 +86,8 @@ public class Circumstances {
         this.hasExtraCurrentWork = hasExtraCurrentWork;
         this.hasExtraPreviousWork = hasExtraPreviousWork;
         this.locale = locale;
+        this.backDating = backDating;
+        this.encrypted = encrypted;
     }
 
     public Boolean getDeclarationAgreed() {
@@ -236,6 +244,22 @@ public class Circumstances {
 
     public void setServiceVersion(final String serviceVersion) {
         this.serviceVersion = serviceVersion;
+    }
+
+    public BackDating getBackDating() {
+        return backDating;
+    }
+
+    public void setBackDating(final BackDating backDating) {
+        this.backDating = backDating;
+    }
+
+    public Boolean getEncrypted() {
+        return encrypted;
+    }
+
+    public void setEncrypted(final Boolean encrypted) {
+        this.encrypted = encrypted;
     }
 
     @Override

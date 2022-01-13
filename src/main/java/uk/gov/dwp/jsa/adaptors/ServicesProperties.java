@@ -15,8 +15,6 @@ public class ServicesProperties {
     private String bankDetailsVersion;
     private String circumstancesServer;
     private String circumstancesVersion;
-    private String cisServer;
-    private String cisVersion;
     private String citizenUiServer;
     private String claimantServer;
     private String claimantVersion;
@@ -84,21 +82,6 @@ public class ServicesProperties {
         this.circumstancesVersion = circumstancesVersion;
     }
 
-    public String getCisServer() {
-        return cisServer;
-    }
-
-    public void setCisServer(final String cisServer) {
-        this.cisServer = cisServer;
-    }
-
-    public String getCisVersion() {
-        return cisVersion;
-    }
-
-    public void setCisVersion(final String cisVersion) {
-        this.cisVersion = cisVersion;
-    }
 
     public String getCitizenUiServer() {
         return citizenUiServer;

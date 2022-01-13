@@ -1,5 +1,7 @@
 package uk.gov.dwp.jsa.adaptors.dto.claim.circumstances;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,8 +12,10 @@ public class Pensions {
 
     private List<PensionDetail> current = new ArrayList<>();
 
+    @JsonIgnore
     private List<PensionDetail> deferred = new ArrayList<>();
 
+    @JsonIgnore
     private List<PensionDetail> future = new ArrayList<>();
 
     private Boolean hasExtraPensions;

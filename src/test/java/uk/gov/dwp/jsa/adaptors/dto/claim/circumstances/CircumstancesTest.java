@@ -29,6 +29,8 @@ public class CircumstancesTest {
     public static final Pensions PENSIONS = new Pensions();
     public static final String LOCALE = "EN_GB";
     public static final String SERVICE_VERSION = "v1.0";
+    public static final BackDating BACK_DATING = new BackDating();
+    public static final boolean ENCRYPTED = true;
 
     @Test
     public void hasDefaultFieldValues() {
@@ -50,6 +52,7 @@ public class CircumstancesTest {
         assertThat(circumstances.getPensions(), is(PENSIONS));
         assertThat(circumstances.getLocale(), is(nullValue()));
         assertThat(circumstances.getServiceVersion(), is(nullValue()));
+        assertThat(circumstances.getBackDating(), is(nullValue()));
     }
 
     @Test
@@ -57,7 +60,7 @@ public class CircumstancesTest {
         final Circumstances circumstances = new Circumstances(
                 ID, CLAIMANT_ID, CLAIM_START_DATE, DATE_OF_CLAIM, DECLARATION_AGREED, HAS_NON_UK_WORK_BENEFIT,
                 CURRENT_WORK, PREVIOUS_WORK, EDUCATION, JURY_SERVICE, AVAILABLE_FOR_INTERVIEW, OTHER_BENEFIT, PENSIONS,
-                HAS_EXTRA_CURRENT_WORK, HAS_EXTRA_PREVIOUS_WORK, LOCALE);
+                HAS_EXTRA_CURRENT_WORK, HAS_EXTRA_PREVIOUS_WORK, LOCALE, BACK_DATING, ENCRYPTED);
         assertThat(circumstances.getId(), is(ID));
         assertThat(circumstances.getClaimStartDate(), is(CLAIM_START_DATE));
         assertThat(circumstances.getClaimantId(), is(CLAIMANT_ID));
@@ -75,6 +78,7 @@ public class CircumstancesTest {
         assertThat(circumstances.getPensions(), is(PENSIONS));
         assertThat(circumstances.getLocale(), is(LOCALE));
         assertThat(circumstances.getServiceVersion(), is(nullValue()));
+        assertThat(circumstances.getBackDating(), is(BACK_DATING));
     }
 
     @Test
@@ -194,5 +198,12 @@ public class CircumstancesTest {
         final Circumstances circumstances = new Circumstances();
         circumstances.setServiceVersion(SERVICE_VERSION);
         assertThat(circumstances.getServiceVersion(), is(SERVICE_VERSION));
+    }
+
+    @Test
+    public void setBackDating() {
+        final Circumstances circumstances = new Circumstances();
+        circumstances.setBackDating(BACK_DATING);
+        assertThat(circumstances.getBackDating(), is(BACK_DATING));
     }
 }

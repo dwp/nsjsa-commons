@@ -15,8 +15,6 @@ public class ServicesPropertiesTest {
     private static final String CIRCUMSTANCES_VERSION = "CIRCUMSTANCES_VERSION";
     private static final String BANK_DETAILS_SERVER = "BANK_DETAILS_SERVER";
     private static final String BANK_DETAILS_VERSION = "BANK_DETAILS_VERSION";
-    public static final String CIS_SERVER = "CIS_SERVER";
-    public static final String CIS_VERSION = "CIS_VERSION";
     public static final String JSAPS_SERVER = "JSAPS_SERVER";
     public static final String JSAPS_VERSION = "JSAPS_VERSION";
     public static final String NOTIFICATION_SERVER = "NOTIFICATION_SERVER";
@@ -131,19 +129,6 @@ public class ServicesPropertiesTest {
         assertThat(properties.getJsapsVersion(), is(JSAPS_VERSION));
     }
 
-    @Test
-    public void setsCisServer() {
-        ServicesProperties properties = new ServicesProperties();
-        properties.setCisServer(CIS_SERVER);
-        assertThat(properties.getCisServer(), is(CIS_SERVER));
-    }
-
-    @Test
-    public void setsCisVersion() {
-        ServicesProperties properties = new ServicesProperties();
-        properties.setCisVersion(CIS_VERSION);
-        assertThat(properties.getCisVersion(), is(CIS_VERSION));
-    }
 
     @Test
     public void setsClaimantServer() {

@@ -9,7 +9,7 @@ public class Education {
 
     private String courseName;
 
-    private Integer hoursPerWeek;
+    private Double hoursPerWeek;
 
     private LocalDate startDate;
 
@@ -21,7 +21,7 @@ public class Education {
     }
 
     public Education(final String courseName,
-                     final int hoursPerWeek,
+                     final double hoursPerWeek,
                      final LocalDate startDate,
                      final LocalDate endDate,
                      final String institutionName) {
@@ -40,11 +40,11 @@ public class Education {
         this.courseName = courseName;
     }
 
-    public Integer getHoursPerWeek() {
+    public Double getHoursPerWeek() {
         return hoursPerWeek;
     }
 
-    public void setHoursPerWeek(final Integer hoursPerWeek) {
+    public void setHoursPerWeek(final Double hoursPerWeek) {
         this.hoursPerWeek = hoursPerWeek;
     }
 

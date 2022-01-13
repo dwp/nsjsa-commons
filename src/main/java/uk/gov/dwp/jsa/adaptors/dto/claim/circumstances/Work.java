@@ -1,6 +1,7 @@
 package uk.gov.dwp.jsa.adaptors.dto.claim.circumstances;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import uk.gov.dwp.jsa.adaptors.dto.claim.Address;
 
 import static org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals;
@@ -12,6 +13,7 @@ public class Work {
 
     private Boolean isSelfEmployedOrDirector;
 
+    @JsonIgnore
     private String employerPhoneNumber;
 
     private Address employerAddress;

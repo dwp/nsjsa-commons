@@ -14,7 +14,7 @@ public class EducationTest {
     public static final String INSTITUTION_NAME = "INSTITUTION_NAME";
     public static final LocalDate END_DATE = LocalDate.now();
     public static final LocalDate START_DATE = LocalDate.now();
-    public static final int HOURS_PER_WEEK = 1;
+    public static final double HOURS_PER_WEEK = 11.5;
 
     @Test
     public void constructorSetsFieldValues() {

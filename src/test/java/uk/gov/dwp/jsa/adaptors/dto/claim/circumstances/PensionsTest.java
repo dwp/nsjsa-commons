@@ -20,7 +20,6 @@ public class PensionsTest {
         final Pensions pensions = new Pensions();
         assertThat(pensions.getCurrent(), is(CURRENT));
         assertThat(pensions.getDeferred(), is(DEFERRED));
-        assertThat(pensions.getFuture(), is(FUTURE));
         assertThat(pensions.getHasExtraPensions(), is(nullValue()));
     }
 
@@ -29,7 +28,6 @@ public class PensionsTest {
         final Pensions pensions = new Pensions(CURRENT, DEFERRED, FUTURE, HAS_EXTRA_PENSIONS);
         assertThat(pensions.getCurrent(), is(CURRENT));
         assertThat(pensions.getDeferred(), is(DEFERRED));
-        assertThat(pensions.getFuture(), is(FUTURE));
         assertThat(pensions.getHasExtraPensions(), is(HAS_EXTRA_PENSIONS));
     }
 
@@ -45,13 +43,6 @@ public class PensionsTest {
         final Pensions pensions = new Pensions();
         pensions.setDeferred(DEFERRED);
         assertThat(pensions.getDeferred(), is(DEFERRED));
-    }
-
-    @Test
-    public void setFuture() {
-        final Pensions pensions = new Pensions();
-        pensions.setFuture(FUTURE);
-        assertThat(pensions.getFuture(), is(FUTURE));
     }
 
     @Test

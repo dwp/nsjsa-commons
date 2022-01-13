@@ -13,4 +13,5 @@
     <suppress checks="ParameterNumber" files="Circumstances.java"/>
     <suppress checks="ParameterNumber" files="Evidence.java"/>
     <suppress checks="ParameterNumber" files="ClaimStatistics.java"/>
+    <suppress checks="ParameterNumber" files="BackDating.java"/>
 </suppressions>

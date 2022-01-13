@@ -1,99 +1,43 @@
-# Contributing
+# Introduction
 
-We're glad you want to contribute to this project! This document will help answer common questions you may have during your first contribution.
+I'm really glad you're reading this, because it means that the effort of making this code open has been worthwhile.  We have a couple of points that you'll need to be aware of:
 
-## Submitting Issues
+* If you find a security issue, please don't raise a request.  We’d rather you let us know directly by detailing the issue and emailing it to us at [SecureComms](mailto:secure.communicationsproject@dwp.gsi.gov.uk).  We guarantee to take a look.
+* When wishing to raise a pull request we would be grateful if you could let us know what has changed and why the change is required.
 
-Not every contribution comes in the form of code. Submitting, confirming, and triaging issues is an important task for any project.
+## Submitting changes
 
-If you are familiar with DWP and know the component that is causing you a problem, you can file an issue in the corresponding GitHub project. All of our Open Source Software can be found in our [GitHub organization](https://github.com/dwp/).
+Please send a GitHub Pull request to [SecureComms](mailto:secure.communicationsproject@dwp.gsi.gov.uk?Subject=Pull%20Request) with a clear list of what you've done (read more about [pull requests](https://help.github.com/articles/about-pull-requests/)).  When you send a pull request, we’d really appreciate it if you could include examples and use cases; we can always use more test coverage.
 
-We ask you not to submit security concerns via GitHub. For details on submitting potential security issues please contact [workingagedigital.opensource@dwp.gov.uk](mailto:workingagedigital.opensource@dwp.gov.uk)
+Please follow our coding conventions (below), make sure all of your commits are atomic (one feature per commit) and always write a clear message against your commit that fully describes the change.
 
-## Contribution Process
+    git commit -m "A summary of the commit, what’s changed and the impact."
 
-We have a 3 step process for contributions:
+## Coding conventions
 
-1.  Fork our repo and commit changes to a new branch based off `master`, making sure to sign-off those changes for the [Developer Certificate of Origin](#developer-certification-of-origin-dco).
-2.  Create a GitHub Pull Request for your change, following the instructions in the pull request template (if present).
-3.  A [Code Review](#code-review-process) will then be undertaken by the project maintainers.
+Start reading our code and you'll get the hang of it.  We use [SonarLint](http://www.sonarlint.org/intellij/) & [Checkmarx](https://checkmarx.atlassian.net/wiki/display/KC/CxSAST+IntelliJ+Plugin) for immediate code quality and vulnerability review and our IDE is [IntelliJ](https://www.jetbrains.com/idea/).  All code follows the standard out-of-the-box code formatting rules.
 
-### Pull Request Requirements
+This is open source software.  Consider the people who will read your code and make it look nice for them. Remember your code will be in the public domain and we don’t just want your code to be efficient, we’d like it to be elegant too.
 
-Our projects are built to last. We strive to ensure high quality throughout the experience. In order to ensure this, we require that all pull requests to DWP projects meet these specifications:
+## Testing
 
-1.  **Tests:** To ensure high quality code and protect against future regressions, we require all the code in DWP Projects to have at least unit test coverage.
-2.  **Green CI Tests:** We use CI systems to test all pull requests, although not all of these are publicly visible. We require these test runs to succeed on every pull request before being merged. Project maintainers will help guide you if they find any issues.
+All good (and responsible) coding comes with a complete set of unit samples and thorough coverage.
 
-### Code Review Process
+We use [Cucumber](https://cucumber.io/), [JUnit](http://junit.org/junit4/) and [Mockito](http://site.mockito.org/) to test our code.  Some of our samples haven't been included in the repo because they expose a little more information about our internal processes than we’d like to share; sorry about that.
 
-Code review for public contributions takes place in GitHub pull requests. See [this article](https://help.GitHub.com/articles/about-pull-requests/) if you're not familiar with GitHub Pull Requests.
+We accept that you can't write for samples you can't see but if you're going to contribute, please write a full set of samples for the code you have changed and we'll take it from there.
 
-Once you open a pull request, project maintainers will review your code and respond to your pull request with any feedback they might have. The process at this point is as follows:
+We're more than happy to look at any suggestions; a different perspective can be wholly refreshing!
 
-1.  Two thumbs-up (:+1:) are required from project maintainers.
-2.  When ready, your pull request will be tagged with label `Ready For Merge`.
-3.  Your change will be merged into the project's `master` branch and may be noted in the project's `CHANGELOG.md` at the time of release.
+## Communication
 
-### Developer Certification of Origin (DCO)
+Once we get a request from you we'll firstly acknowledge receipt.
 
-Licensing is very important to open source projects. It helps ensure the software continues to be available under the terms that the author desired.
+Then we’ll assess the content and purpose of your suggestion and let you know what we're going to do with it.  Please don't be offended if we can't accept it; we will try and explain the reasons for this decision if that's the case.
 
-This project uses [the ISC license](LICENSE) to strike a balance between open contribution and allowing you to use the software however you would like to.
+If we _can_ accept your contribution we'll raise a task on our backlog to implement the change.  Ultimately, your code may look a little different to the original submission once our standards, security concerns and internal formatting rules have been applied but it’s still your contribution.
 
-The license tells you what rights you have that are provided by the copyright holder. It is important that the contributor fully understands what rights they are licensing and agrees to them. Sometimes the copyright holder isn't the contributor, such as when the contributor is doing work on behalf of a company.
+If we accept your code and it makes it to a release then we'll acknowledge your valuable contribution in the change log, as well as letting you know directly.
 
-To make a good faith effort to ensure these criteria are met, DWP requires the Developer Certificate of Origin (DCO) process to be followed.
 
-The DCO is an attestation attached to every contribution made by every developer. In the commit message of the contribution, the developer simply adds a Signed-off-by statement and thereby agrees to the DCO, which you can find below or at <http://developercertificate.org/>.
-
-```
-Developer's Certificate of Origin 1.1
-
-By making a contribution to this project, I certify that:
-
-(a) The contribution was created in whole or in part by me and I
-    have the right to submit it under the open source license
-    indicated in the file; or
-
-(b) The contribution is based upon previous work that, to the
-    best of my knowledge, is covered under an appropriate open
-    source license and I have the right under that license to   
-    submit that work with modifications, whether created in whole
-    or in part by me, under the same open source license (unless
-    I am permitted to submit under a different license), as
-    Indicated in the file; or
-
-(c) The contribution was provided directly to me by some other
-    person who certified (a), (b) or (c) and I have not modified
-    it.
-
-(d) I understand and agree that this project and the contribution
-    are public and that a record of the contribution (including
-    all personal information I submit with it, including my
-    sign-off) is maintained indefinitely and may be redistributed
-    consistent with this project or the open source license(s)
-    involved.
-```
-
-#### DCO Sign-Off Methods
-
-The DCO requires a sign-off message in the following format appear on each commit in the pull request:
-
-```
-Signed-off-by: Jane Doe <jane.doe@example.com>
-```
-
-The DCO text can either be manually added to your commit body, or you can add either **-signoff** or **-s** to your usual git commit commands. If you forget to add the sign-off you can also amend a previous commit with the sign-off by running **git commit –-amend --signoff --no-edit**. If you've pushed your changes to GitHub already you'll need to force push your branch after this with **git push --force**.
-
-## Versioning
-
-We follow the [Semantic Versioning](http://semver.org/) standard. Our standard version numbers look like X.Y.Z which mean:
-
-*   X is a major release, which may not be fully compatible with any prior major releases
-*   Y is a minor release, which adds both new features and bug fixes
-*   Z is a patch release, which just adds bug fixes
-
-## Acknowledgements
-
-This guide was originally based upon the [InSpec Contribution Guide](https://github.com/chef/inspec/blob/master/CONTRIBUTING.md)
+_`document reference : ContributionGuide.docx (1.1)`_

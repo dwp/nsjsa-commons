@@ -1,6 +1,7 @@
 package uk.gov.dwp.jsa.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,6 +20,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static uk.gov.dwp.jsa.security.Constants.NoSecure.NO_SECURE_PROFILE;
 import static uk.gov.dwp.jsa.security.JWTFilter.AUTH_PREFIX;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -49,6 +51,30 @@ public class JWTFilterTest {
 
     @Test
     public void testJwtIsEmptyShouldNotAuthenticate() throws IOException, ServletException {
+        when(request.getHeader(JWTFilter.AUTHORIZATION_HEADER)).thenReturn(StringUtils.EMPTY);
+
+        sut.doFilter(request, response, filterChain);
+
+        verify(tokenProvider, never()).getAuthentication(anyString());
+        verify(filterChain).doFilter(request, response);
+    }
+
+    @Test
+    public void testJwtWithNoSecureProfile() throws IOException, ServletException {
+        final String token = "{\n" +
+                "   \"sub\" : \"joe.bloggs@dwp.gsi.gov.uk\",\n" +
+                "   \"aud\" : \"test,manager,base\",\n" +
+                "   \"iss\" : \"dwp-adfs\",\n" +
+                "   \"sid\" : \"5f1dd760-b1d0-78c9-9fdb-dbec3f1311b8\",\n" +
+                "   \"iat\" : 1525250181,\n" +
+                "   \"exp\" : 1525278981,\n" +
+                "   \"username\" : \"00000221\"\n" +
+                "}";
+        when(request.getHeader(JWTFilter.AUTHORIZATION_HEADER)).thenReturn(AUTH_PREFIX + token);
+        when(request.getHeader("tokenpayload")).thenReturn(Base64.encodeBase64String(token.getBytes()));
+        when(tokenProvider.validateToken(token)).thenReturn(true);
+
+        when(environment.getActiveProfiles()).thenReturn(new String[]{"test",NO_SECURE_PROFILE});
         when(request.getHeader(JWTFilter.AUTHORIZATION_HEADER)).thenReturn(StringUtils.EMPTY);
 
         sut.doFilter(request, response, filterChain);

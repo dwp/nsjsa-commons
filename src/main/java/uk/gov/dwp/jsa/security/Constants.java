@@ -12,6 +12,7 @@ public final class Constants {
     public static final String TEST_PROFILE = "local_test";
     public static final String DEV_PROFILE = "dev";
     public static final String LOCAL_PROFILE = "local";
+    public static final String KMS_PROFILE = "kms";
 
     public static final class NoSecure {
         private NoSecure() {

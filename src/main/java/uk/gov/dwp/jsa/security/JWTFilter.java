@@ -29,6 +29,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static java.util.Arrays.asList;
+import static java.util.stream.Collectors.toList;
 import static uk.gov.dwp.jsa.security.Constants.NoSecure.NO_SECURE_PROFILE;
 
 public class JWTFilter extends GenericFilterBean {
@@ -61,7 +63,7 @@ public class JWTFilter extends GenericFilterBean {
             throws IOException, ServletException {
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
         String jwt = resolveToken(httpServletRequest);
-        if (Arrays.asList(environment.getActiveProfiles()).contains(NO_SECURE_PROFILE)) {
+        if (asList(environment.getActiveProfiles()).contains(NO_SECURE_PROFILE)) {
             List<SimpleGrantedAuthority> authorities = setAuthoritiesForGivenProfiles();
 
             Authentication authentication = new AuthenticationToken("Mr John Smith", "12345678", "", authorities);
@@ -77,10 +79,10 @@ public class JWTFilter extends GenericFilterBean {
                                 .filter(Optional::isPresent)
                                 .map(Optional::get)
                                 .map(SimpleGrantedAuthority::new)
-                                .collect(Collectors.toList());
+                                .collect(toList());
                 LOGGER.debug("Token payload: " + tokenPayload);
                 authentication = new AuthenticationToken(String.valueOf(payloadMap.get("username")),
-                        String.valueOf(payloadMap.get("iat")), "", authorities, tokenPayload);
+                        String.valueOf(payloadMap.get("username")), "", authorities, tokenPayload);
             }
 
             SecurityContextHolder.getContext().setAuthentication(authentication);
