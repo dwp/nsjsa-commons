@@ -19,6 +19,7 @@ import uk.gov.dwp.jsa.adaptors.http.api.ClaimStatusUpdateResponse;
 import uk.gov.dwp.jsa.adaptors.http.api.InvalidateStatusResponse;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -50,7 +51,7 @@ public class RestfulValidationServiceAdaptorTest {
     private static final String OFFICE_ID = "OFFICE_ID";
     private static final String AGENT = "AGENT";
     private static final LocalDate today = LocalDate.now();
-    private static final String GET_CLAIM_STATISTICS_URL = String.format("%s/nsjsa/v%s/claim/statistics?date=%s", VALIDATION_SERVER, VALIDATION_SERVICE_VERSION, LocalDate.now());
+    private static final String GET_CLAIM_STATISTICS_URL = String.format("%s/nsjsa/v%s/claim/statistics?date=%s", VALIDATION_SERVER, VALIDATION_SERVICE_VERSION, LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE));
     private static final String GET_AGENT_PERFORMANCE_URL = String.format("%s/nsjsa/v%s/claim/statistics/agent?start=%s&end=%s", VALIDATION_SERVER, VALIDATION_SERVICE_VERSION, today, today);
     private static final String INVALIDATE_STATUS_URL = String.format("%s/nsjsa/v%s/claim/invalidate", VALIDATION_SERVER, VALIDATION_SERVICE_VERSION);
     private static final List<UUID> claimantIds = Arrays.asList(new UUID[] { UUID.randomUUID() });

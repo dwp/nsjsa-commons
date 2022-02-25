@@ -20,6 +20,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.isNull;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -27,11 +28,13 @@ public class RestfulNotificationServiceAdaptorTest {
 
     private static final String NOTIFICATION_SERVICE_VERSION = "1";
     private static final String NOTIFICATION_SERVER = "http:///hello";
+    private static final Integer PREVIOUS_DAY_COUNT = 1;
 
     private static final String SEND_MAIL_URL = String.format("%s/nsjsa/v%s/notification/mail/claim-confirmation", NOTIFICATION_SERVER, NOTIFICATION_SERVICE_VERSION);
     private static final String SEND_SMS_URL = String.format("%s/nsjsa/v%s/notification/sms/claim-confirmation", NOTIFICATION_SERVER, NOTIFICATION_SERVICE_VERSION);
     private static final String SEND_MAIL_COUNT_URL = String.format("%s/nsjsa/v%s/notification/mail/mi-claims-count", NOTIFICATION_SERVER, NOTIFICATION_SERVICE_VERSION);
     private static final String SEND_MAIL_STATS_URL = String.format("%s/nsjsa/v%s/notification/mail/mi-claim-stats", NOTIFICATION_SERVER, NOTIFICATION_SERVICE_VERSION);
+    private static final String SEND_MAIL_DAILY_REPORT = String.format("%s/nsjsa/v%s/notification/mail/daily-claim-stats-summary?previousDayCount=%s", NOTIFICATION_SERVER, NOTIFICATION_SERVICE_VERSION, PREVIOUS_DAY_COUNT);
 
     private String SEND_MAIL_PROGRESS_URL = String.format("/nsjsa/v%s/notification/mail/claim-progress", NOTIFICATION_SERVER, NOTIFICATION_SERVICE_VERSION);
     private String SEND_SMS_PROGRESS_URL = String.format("/nsjsa/v%s/notification/sms/claim-progress", NOTIFICATION_SERVER, NOTIFICATION_SERVICE_VERSION);
@@ -130,6 +133,22 @@ public class RestfulNotificationServiceAdaptorTest {
         givenAnAdaptorWhichResponseWithOkFromASendProgressSms();
         whenSendClaimProgressSms();
         thenAnOkIsReturned();
+    }
+
+    @Test
+    public void testSendDailyClaimStatsMail() throws ExecutionException, InterruptedException {
+        givenAnAdaptorWhichRespondsWithOkFromSendDailyClaimStatsMail();
+        whenSendDailyClaimStatsMail();
+        thenAnOkIsReturned();
+    }
+
+    private void givenAnAdaptorWhichRespondsWithOkFromSendDailyClaimStatsMail() {
+        when(restfulExecutor.post(
+                eq(SEND_MAIL_DAILY_REPORT),
+                isNull(),
+                eq(ApiResponse.class),
+                any()))
+                .thenReturn(Optional.of(HttpStatus.OK.name()));
     }
 
     private void givenAnAdaptorWhichRespondsWithOkFromASendSms() {
@@ -262,6 +281,10 @@ public class RestfulNotificationServiceAdaptorTest {
 
     private void whenSendClaimProgressSms() {
         response = adaptor.sendClaimProgressSMS(CLAIMANT_ID);
+    }
+
+    private void whenSendDailyClaimStatsMail() {
+        response = adaptor.sendDailyClaimStatsMail(PREVIOUS_DAY_COUNT);
     }
 
     private void whenSendClaimSuccessSms() {

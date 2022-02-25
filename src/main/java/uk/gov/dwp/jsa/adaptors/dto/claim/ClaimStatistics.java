@@ -15,6 +15,7 @@ public class ClaimStatistics {
     private double percentageOfClaimsInWeekClosedIn48hr;
     private int casesOutstandingOutside24hrKpi;
     private int casesOutstandingOutside48hrKpi;
+    private int assistedDigitalClaimCount;
 
     public ClaimStatistics() { }
 
@@ -41,6 +42,18 @@ public class ClaimStatistics {
         this.percentageOfClaimsInWeekClosedIn48hr = percentageOfClaimsInWeekClosedIn48hr;
         this.casesOutstandingOutside24hrKpi = casesOutstandingOutside24hrKpi;
         this.casesOutstandingOutside48hrKpi = casesOutstandingOutside48hrKpi;
+    }
+
+    public ClaimStatistics(final int casesReceivedInDay, final int headOfWork, final LocalDateTime oldestClaimOpen,
+                           final int casesClearedInDay, final double percentageOfClaimsInDayClosedIn24hr,
+                           final double percentageOfClaimsInDayClosedIn48hr, final int totalNumberOfClaimsInWeek,
+                           final double percentageOfClaimsInWeekClosedIn24hr,
+                           final double percentageOfClaimsInWeekClosedIn48hr, final int casesOutstandingOutside24hrKpi,
+                           final int casesOutstandingOutside48hrKpi, final int assistedDigitalClaimCount) {
+        this(casesReceivedInDay, headOfWork, oldestClaimOpen, casesClearedInDay, percentageOfClaimsInDayClosedIn24hr,
+                percentageOfClaimsInDayClosedIn48hr, totalNumberOfClaimsInWeek, percentageOfClaimsInWeekClosedIn24hr,
+                percentageOfClaimsInWeekClosedIn48hr, casesOutstandingOutside24hrKpi, casesOutstandingOutside48hrKpi);
+        this.assistedDigitalClaimCount = assistedDigitalClaimCount;
     }
 
     public int getCasesReceivedInDay() {
@@ -129,5 +142,13 @@ public class ClaimStatistics {
 
     public void setCasesOutstandingOutside48hrKpi(final int casesOutstandingOutside48hrKpi) {
         this.casesOutstandingOutside48hrKpi = casesOutstandingOutside48hrKpi;
+    }
+
+    public int getAssistedDigitalClaimCount() {
+        return assistedDigitalClaimCount;
+    }
+
+    public void setAssistedDigitalClaimCount(final int assistedDigitalClaimCount) {
+        this.assistedDigitalClaimCount = assistedDigitalClaimCount;
     }
 }

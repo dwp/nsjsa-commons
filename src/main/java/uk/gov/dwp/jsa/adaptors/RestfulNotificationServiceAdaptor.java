@@ -28,6 +28,8 @@ public class RestfulNotificationServiceAdaptor implements NotificationServiceAda
     private String sendClaimProgressSmsUrl = "/nsjsa/v%s/notification/sms/claim-progress";
     private String sendClaimSuccessMailUrl = "/nsjsa/v%s/notification/mail/claimant-success";
     private String sendClaimSuccessSmsUrl = "/nsjsa/v%s/notification/sms/claimant-success";
+    private String sendDailyClaimStatsEmailUrl = "/nsjsa/v%s/notification/mail/daily-claim-stats-summary?"
+            + "previousDayCount=%s";
 
     private final ServicesProperties servicesProperties;
     private final RestfulExecutor restfulExecutor;
@@ -69,6 +71,16 @@ public class RestfulNotificationServiceAdaptor implements NotificationServiceAda
         return CompletableFuture.completedFuture(HttpStatus.OK.name());
     }
 
+    private CompletableFuture<String> sendNotification(final String baseUrl,
+                                                       final int previousDayCount) {
+        final String url = servicesProperties.getNotificationServer()
+                + format(baseUrl, servicesProperties.getNotificationVersion(), previousDayCount);
+        restfulExecutor.post(url, null,
+                ApiResponse.class, (Function<ResponseEntity<ApiResponse>, Optional<ApiResponse>>)
+                        apiResponseResponseEntity -> Optional.empty());
+        return CompletableFuture.completedFuture(HttpStatus.OK.name());
+    }
+
     private CompletableFuture<String> sendClaimSuccessNotification(final String baseUrl, final UUID claimantId) {
         restfulExecutor.post(getUrl(baseUrl), new NotificationRequest(claimantId),
                 ApiResponse.class, (Function<ResponseEntity<ApiResponse>, Optional<ApiResponse>>)
@@ -104,6 +116,11 @@ public class RestfulNotificationServiceAdaptor implements NotificationServiceAda
     @Async
     public CompletableFuture<String> sendClaimSuccessSms(final UUID claimantId) {
         return sendClaimSuccessNotification(sendClaimSuccessSmsUrl, claimantId);
+    }
+
+    @Async
+    public CompletableFuture<String> sendDailyClaimStatsMail(final int previousDayCount) {
+        return sendNotification(sendDailyClaimStatsEmailUrl, previousDayCount);
     }
 
     @Async

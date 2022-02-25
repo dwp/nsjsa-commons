@@ -24,4 +24,5 @@ public interface NotificationServiceAdaptor {
 
     CompletableFuture<String> sendClaimSuccessSms(final UUID claimantId);
 
+    CompletableFuture<String> sendDailyClaimStatsMail(final int previousDayCount);
 }

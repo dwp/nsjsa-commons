@@ -19,6 +19,7 @@ import uk.gov.dwp.jsa.adaptors.http.api.UUIDResponse;
 import uk.gov.dwp.jsa.adaptors.http.api.InvalidateStatusResponse;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -133,7 +134,8 @@ public class RestfulValidationServiceAdaptor implements ValidationServiceAdaptor
 
     private String getGetClaimStatisticsUrl(final String urlTemplate, final LocalDate date) {
         return servicesProperties.getValidationServer()
-                + format(urlTemplate, servicesProperties.getValidationVersion(), date);
+                + format(urlTemplate, servicesProperties.getValidationVersion(),
+                date.format(DateTimeFormatter.ISO_LOCAL_DATE));
     }
 }
 

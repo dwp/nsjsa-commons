@@ -22,6 +22,7 @@ public class ClaimStatisticsTest {
     private static final double PERCENTAGE_OF_CLAIMS_IN_WEEK_CLOSED_IN_48_HR = 8;
     private static final int OUTSTANDING_OUTSIDE_24HR = 9;
     private static final int OUTSTANDING_OUTSIDE_48HR = 10;
+    private static final int ASSISTED_DIGITAL_CLAIM_COUNT = 5;
 
     @Test
     public void constructorSetsFields() {
@@ -36,7 +37,8 @@ public class ClaimStatisticsTest {
                 PERCENTAGE_OF_CLAIMS_IN_WEEK_CLOSED_IN_24_HR,
                 PERCENTAGE_OF_CLAIMS_IN_WEEK_CLOSED_IN_48_HR,
                 OUTSTANDING_OUTSIDE_24HR,
-                OUTSTANDING_OUTSIDE_48HR);
+                OUTSTANDING_OUTSIDE_48HR,
+                ASSISTED_DIGITAL_CLAIM_COUNT);
         assertThat(claimStatistics.getOldestClaimOpen(), is(OLDEST_CLAIM_OPEN));
         assertThat(claimStatistics.getCasesReceivedInDay(), is(CASES_RECEIVED_IN_DAY));
         assertThat(claimStatistics.getCasesClearedInDay(), is(CASES_CLEARED_IN_DAY));
@@ -48,6 +50,7 @@ public class ClaimStatisticsTest {
         assertThat(claimStatistics.getHeadOfWork(), is(HEAD_OF_WORK));
         assertThat(claimStatistics.getCasesOutstandingOutside24hrKpi(), is(OUTSTANDING_OUTSIDE_24HR));
         assertThat(claimStatistics.getCasesOutstandingOutside48hrKpi(), is(OUTSTANDING_OUTSIDE_48HR));
+        assertThat(claimStatistics.getAssistedDigitalClaimCount(), is(ASSISTED_DIGITAL_CLAIM_COUNT));
     }
 
     @Test
@@ -127,5 +130,10 @@ public class ClaimStatisticsTest {
         assertThat(claimStatistics.getHeadOfWork(), is(HEAD_OF_WORK));
     }
 
-
+    @Test
+    public void setsAssistedDigitalClaimCount() {
+        final ClaimStatistics claimStatistics = new ClaimStatistics();
+        claimStatistics.setAssistedDigitalClaimCount(ASSISTED_DIGITAL_CLAIM_COUNT);
+        assertThat(claimStatistics.getAssistedDigitalClaimCount(), is(ASSISTED_DIGITAL_CLAIM_COUNT));
+    }
 }
